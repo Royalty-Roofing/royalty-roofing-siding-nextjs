@@ -1,4 +1,4 @@
-import EstimateForm from "./EstimateForm";
+import { RoyaltyBookingForm } from "./royalty-booking";
 
 const BBB_LOGO =
   "/images/OvrIKRhrXjOUvBsh.png";
@@ -177,12 +177,7 @@ export default function HeroSection() {
 
         {/* RIGHT: Form */}
         <div style={{ paddingBottom: "8px" }} className="hero-form-col">
-          <EstimateForm
-            variant="glass"
-            source="hero"
-            headerText="Get Your Free Siding Estimate"
-            buttonText="GET MY FREE ESTIMATE"
-          />
+          <RoyaltyBookingForm title="Get Your Free Siding Estimate" />
         </div>
       </div>
 

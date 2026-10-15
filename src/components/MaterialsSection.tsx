@@ -40,10 +40,6 @@ const MATERIALS = [
 ];
 
 export default function MaterialsSection() {
-  const scrollToForm = () => {
-    document.getElementById("bottom-form")?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <section id="materials" style={{ background: "#ffffff", padding: "96px 0" }}>
       <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 28px" }}>
@@ -176,7 +172,8 @@ export default function MaterialsSection() {
             Not sure which is right for your home? Get a free recommendation.
           </p>
           <button
-            onClick={scrollToForm}
+            type="button"
+            data-royalty-booking-open
             style={{
               background: "#3D6CC0",
               color: "white",

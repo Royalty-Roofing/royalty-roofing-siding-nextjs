@@ -1,15 +1,8 @@
 // Centralized lead-tracking for the landing page.
 //
-// Two responsibilities:
-//   1. Push a "generate_lead" event to GTM/gtag (Google dataLayer) so paid-traffic
-//      conversions are attributed correctly.
-//   2. Forward the lead to our CRM via a single webhook function (postLeadToCRM).
-//
-// Point CRM_WEBHOOK_URL at the endpoint you want leads POSTed to.
-
-// TODO: Replace with your CRM / webhook endpoint (e.g. a Zapier catch hook,
-// a GoHighLevel inbound webhook, or your own /api/lead route).
-const CRM_WEBHOOK_URL = "";
+// Pushes "generate_lead" events to GTM/gtag (Google dataLayer) and fires the
+// Google Ads conversions. Leads themselves are sent to GHL by the Royalty booking
+// widget (components/royalty-booking.tsx); see components/BookingConversions.tsx.
 
 // Google Ads conversion for "Submit lead form" (siding.royaltyroofing.org).
 // The base gtag.js tag for AW-931355603 is loaded in app/layout.tsx; this is
@@ -97,26 +90,6 @@ export function trackLead(method: LeadMethod, details: LeadDetails = {}): void {
 export function trackFormConversion(source: string, details: LeadDetails = {}): void {
   trackLead(source, details);
   reportAdsConversion(GOOGLE_ADS_FORM_CONVERSION);
-}
-
-/**
- * POST a submitted lead to the CRM webhook. Fire-and-forget; never throws so it
- * can't block the user-facing thank-you state.
- */
-export async function postLeadToCRM(details: LeadDetails): Promise<void> {
-  if (!CRM_WEBHOOK_URL) return;
-  try {
-    await fetch(CRM_WEBHOOK_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...details, submittedAt: new Date().toISOString() }),
-      keepalive: true,
-    });
-  } catch (err) {
-    if (process.env.NODE_ENV !== "production") {
-      console.log("[v0] postLeadToCRM failed", err);
-    }
-  }
 }
 
 /**

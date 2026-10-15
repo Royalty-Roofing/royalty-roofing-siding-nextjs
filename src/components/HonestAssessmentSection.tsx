@@ -27,10 +27,6 @@ const PROOF_BLOCKS = [
 ];
 
 export default function HonestAssessmentSection() {
-  const scrollToForm = () => {
-    document.getElementById("bottom-form")?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <section id="why-royalty" style={{ background: "#ffffff", padding: "96px 0" }}>
       <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 28px" }}>
@@ -125,7 +121,8 @@ export default function HonestAssessmentSection() {
               ))}
             </div>
             <button
-              onClick={scrollToForm}
+              type="button"
+              data-royalty-booking-open
               style={{
                 marginTop: "8px",
                 background: "#3D6CC0",

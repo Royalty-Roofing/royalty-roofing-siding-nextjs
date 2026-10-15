@@ -18,10 +18,6 @@ const FAQS = [
 ];
 
 export default function SidingCostSection() {
-  const scrollToForm = () => {
-    document.getElementById("bottom-form")?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <section id="cost" style={{ background: "#ffffff", padding: "96px 0" }}>
       <div style={{ maxWidth: "1080px", margin: "0 auto", padding: "0 28px" }}>
@@ -101,7 +97,8 @@ export default function SidingCostSection() {
             </p>
           </div>
           <button
-            onClick={scrollToForm}
+            type="button"
+            data-royalty-booking-open
             style={{
               background: "#3D6CC0",
               color: "white",

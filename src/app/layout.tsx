@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Bebas_Neue, DM_Sans } from "next/font/google";
 import "./globals.css";
+import { RoyaltyBookingScript } from "@/components/royalty-booking";
+import BookingConversions from "@/components/BookingConversions";
 
 // Self-hosted via next/font — generates size-adjusted fallback metrics that
 // eliminate the layout shift (CLS) the prior <link>+swap approach caused.
@@ -109,6 +111,9 @@ gtag('config', 'AW-931355603/JUMmCLPWodQcENO3jbwD', {
       </head>
       <body>
         {children}
+        {/* launcher off: the sticky mobile bar already opens the booking popup, and the corner button would cover it */}
+        <RoyaltyBookingScript siteType="Landing Page" siteName="Siding Landing Page" launcher={false} />
+        <BookingConversions />
         {ANALYTICS_ENDPOINT && ANALYTICS_WEBSITE_ID && (
           <Script defer src={`${ANALYTICS_ENDPOINT}/umami`} data-website-id={ANALYTICS_WEBSITE_ID} strategy="lazyOnload" />
         )}

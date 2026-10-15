@@ -4,11 +4,12 @@ import { trackCall } from "@/lib/tracking";
 const LOGO =
   "/images/jgBpqGuFanZshxxZ.png";
 
-const NAV_LINKS = [
+const NAV_LINKS: { label: string; id: string; booking?: boolean }[] = [
   { label: "Why Royalty", id: "why-royalty" },
   { label: "Reviews", id: "reviews" },
   { label: "Our Team", id: "team" },
-  { label: "Get Estimate", id: "bottom-form" },
+  // Opens the booking popup instead of scrolling.
+  { label: "Get Estimate", id: "bottom-form", booking: true },
 ];
 
 export default function Footer() {
@@ -70,10 +71,12 @@ export default function Footer() {
               Navigation
             </h4>
             <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-              {NAV_LINKS.map(({ label, id }) => (
+              {NAV_LINKS.map(({ label, id, booking }) => (
                 <button
                   key={id}
-                  onClick={() => scrollTo(id)}
+                  type="button"
+                  data-royalty-booking-open={booking ? "" : undefined}
+                  onClick={booking ? undefined : () => scrollTo(id)}
                   style={{
                     background: "none",
                     border: "none",

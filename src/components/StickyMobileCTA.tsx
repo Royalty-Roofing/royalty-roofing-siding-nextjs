@@ -3,11 +3,6 @@
 import { trackCall, trackText, trackCTA } from "@/lib/tracking";
 
 export default function StickyMobileCTA() {
-  const scrollToForm = () => {
-    trackCTA("sticky_mobile_free_estimate");
-    document.getElementById("bottom-form")?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <div
       className="lg:hidden"
@@ -90,7 +85,9 @@ export default function StickyMobileCTA() {
         Text
       </a>
       <button
-        onClick={scrollToForm}
+        type="button"
+        data-royalty-booking-open
+        onClick={() => trackCTA("sticky_mobile_free_estimate")}
         style={{
           flex: 2,
           minHeight: "48px",

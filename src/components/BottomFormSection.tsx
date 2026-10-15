@@ -1,5 +1,5 @@
 // id="bottom-form" — dark navy bg, headline + trust checklist left, form right
-import EstimateForm from "./EstimateForm";
+import { RoyaltyBookingForm } from "./royalty-booking";
 import { trackCall } from "@/lib/tracking";
 
 export default function BottomFormSection() {
@@ -123,12 +123,7 @@ export default function BottomFormSection() {
 
         {/* RIGHT: Form */}
         <div>
-          <EstimateForm
-            variant="glass"
-            source="bottom_form"
-            headerText="Get Your Free Consultation"
-            buttonText="GET MY FREE ESTIMATE"
-          />
+          <RoyaltyBookingForm />
         </div>
       </div>
       <style>{`

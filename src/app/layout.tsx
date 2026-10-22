@@ -3,7 +3,8 @@ import Script from "next/script";
 import { Bebas_Neue, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { RoyaltyBookingScript } from "@/components/royalty-booking";
-import BookingConversions from "@/components/BookingConversions";
+import { GoogleTagManagerHead, GoogleTagManagerNoScript } from "@/components/google-tag-manager";
+import GtmEvents from "@/components/gtm-events";
 
 // Self-hosted via next/font — generates size-adjusted fallback metrics that
 // eliminate the layout shift (CLS) the prior <link>+swap approach caused.
@@ -92,28 +93,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`bg-background ${bebasNeue.variable} ${dmSans.variable}`}>
       <head>
+        <GoogleTagManagerHead />
         {/* LocalBusiness structured data */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(LOCAL_BUSINESS_JSONLD) }}
         />
-        {/* Google tag (gtag.js) — loaded after the page is interactive */}
-        <Script src="https://www.googletagmanager.com/gtag/js?id=AW-931355603" strategy="afterInteractive" />
-        <Script id="gtag-config" strategy="afterInteractive">
-          {`window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'AW-931355603');
-gtag('config', 'AW-931355603/JUMmCLPWodQcENO3jbwD', {
-  'phone_conversion_number': '(402) 216-8850'
-});`}
-        </Script>
       </head>
       <body>
+        <GoogleTagManagerNoScript />
         {children}
         {/* launcher off: the sticky mobile bar already opens the booking popup, and the corner button would cover it */}
         <RoyaltyBookingScript siteType="Landing Page" siteName="Siding Landing Page" launcher={false} />
-        <BookingConversions />
+        <GtmEvents />
         {ANALYTICS_ENDPOINT && ANALYTICS_WEBSITE_ID && (
           <Script defer src={`${ANALYTICS_ENDPOINT}/umami`} data-website-id={ANALYTICS_WEBSITE_ID} strategy="lazyOnload" />
         )}

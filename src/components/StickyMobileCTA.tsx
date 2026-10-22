@@ -1,6 +1,7 @@
 // Fixed bottom bar on mobile — Call Now + GET FREE INSPECTION
 // Hidden on lg+ screens via Tailwind lg:hidden
-import { trackCall, trackText, trackCTA } from "@/lib/tracking";
+import { trackCTA } from "@/lib/tracking";
+import { PHONE_HREF } from "@/lib/phone";
 
 export default function StickyMobileCTA() {
   return (
@@ -21,8 +22,7 @@ export default function StickyMobileCTA() {
       }}
     >
       <a
-        href="tel:+14022168850"
-        onClick={() => trackCall("sticky_mobile")}
+        href={PHONE_HREF}
         aria-label="Call now"
         style={{
           flex: 1,
@@ -58,7 +58,6 @@ export default function StickyMobileCTA() {
       </a>
       <a
         href="sms:+14022168850"
-        onClick={() => trackText("sticky_mobile")}
         aria-label="Text us"
         style={{
           flex: 1,

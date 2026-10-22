@@ -1,5 +1,5 @@
 // Google Tag Manager. This is the only Google tag on the site: GA4, Google Ads and CallRail
-// all load through this container. The container ID comes from NEXT_PUBLIC_GTM_ID (set in Vercel).
+// all load through this container. The container ID comes from NEXT_PUBLIC_GTM_ID in the committed .env file.
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 
 // Goes inside <head>.

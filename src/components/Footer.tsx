@@ -1,5 +1,5 @@
 // White footer — logo, nav links, contact info, copyright, privacy policy
-import { trackCall } from "@/lib/tracking";
+import { PHONE_DISPLAY, PHONE_HREF } from "@/lib/phone";
 
 const LOGO =
   "/images/jgBpqGuFanZshxxZ.png";
@@ -114,8 +114,7 @@ export default function Footer() {
             </h4>
             <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
               <a
-                href="tel:+14022168850"
-                onClick={() => trackCall("footer")}
+                href={PHONE_HREF}
                 style={{
                   fontSize: "14px",
                   color: "#0A1220",
@@ -127,7 +126,7 @@ export default function Footer() {
                 onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#3D6CC0")}
                 onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#0A1220")}
               >
-                (402) 216-8850
+                {PHONE_DISPLAY}
               </a>
               <a
                 href="mailto:info@royaltyroofing.org"

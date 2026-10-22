@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { trackCall, trackText, trackCTA } from "@/lib/tracking";
+import { trackCTA } from "@/lib/tracking";
+import { PHONE_DISPLAY, PHONE_HREF } from "@/lib/phone";
 
 const LOGO =
   "/images/jgBpqGuFanZshxxZ.png";
@@ -107,9 +108,8 @@ export default function Navbar() {
         {/* Right side */}
         <div style={{ display: "flex", alignItems: "center", gap: "12px", flexShrink: 0 }}>
           <a
-            href="tel:+14022168850"
+            href={PHONE_HREF}
             className="hidden sm:flex"
-            onClick={() => trackCall("navbar")}
             style={{
               alignItems: "center",
               gap: "7px",
@@ -131,12 +131,11 @@ export default function Navbar() {
             >
               <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
             </svg>
-            (402) 216-8850
+            {PHONE_DISPLAY}
           </a>
           <a
             href="sms:+14022168850"
             className="hidden md:inline-flex"
-            onClick={() => trackText("navbar")}
             style={{
               alignItems: "center",
               gap: "6px",
@@ -266,8 +265,7 @@ export default function Navbar() {
             </button>
           ))}
           <a
-            href="tel:+14022168850"
-            onClick={() => trackCall("navbar_mobile")}
+            href={PHONE_HREF}
             style={{
               marginTop: "12px",
               display: "flex",
@@ -294,11 +292,10 @@ export default function Navbar() {
             >
               <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
             </svg>
-            Call (402) 216-8850
+            Call {PHONE_DISPLAY}
           </a>
           <a
             href="sms:+14022168850"
-            onClick={() => trackText("navbar_mobile")}
             style={{
               marginTop: "8px",
               display: "flex",

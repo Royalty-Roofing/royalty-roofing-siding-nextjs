@@ -1,6 +1,9 @@
 // Google Tag Manager. This is the only Google tag on the site: GA4, Google Ads and CallRail
 // all load through this container. The container ID comes from NEXT_PUBLIC_GTM_ID in the committed .env file.
-const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
+// Only the live site loads GTM, and with it GA4, Google Ads and CallRail. Vercel previews, v0 previews and
+// localhost skip it, so test visits never create test calls or test conversions. VERCEL_ENV is
+// "production" only on the live deployment.
+const GTM_ID = process.env.VERCEL_ENV === "production" ? process.env.NEXT_PUBLIC_GTM_ID : undefined;
 
 // Goes inside <head>.
 export function GoogleTagManagerHead() {
